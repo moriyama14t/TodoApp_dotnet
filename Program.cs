@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using TodoApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<TodoContext>(options => options.UseSqlite("Data Source=TodoApp.db"));
 
 var app = builder.Build();
 
