@@ -8,9 +8,12 @@ namespace TodoApp.Controllers
     {
         private readonly TodoContext _context;
 
-        public TodoController(TodoContext context)
+        private readonly ILogger<TodoController> _logger;
+
+        public TodoController(TodoContext context,ILogger<TodoController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult Index()
