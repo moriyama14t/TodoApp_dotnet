@@ -25,6 +25,10 @@ namespace TodoApp.Controllers
         [HttpPost]
         public IActionResult Create(string title)
         {
+            Console.WriteLine("_logger");
+            Console.WriteLine(_logger);
+            Console.WriteLine("title");
+            Console.WriteLine(title);
             if (!string.IsNullOrEmpty(title))
             {
                 var todo = new Todo { Title = title, IsComplete = false };

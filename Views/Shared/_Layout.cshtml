@@ -2,9 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8" />
+    @* @ViewData["Title"] は、コントローラーやビューで設定したタイトルを参照するためのRazor構文 *@
     <title>@ViewData["Title"] - TodoApp</title>
     <script type="importmap"></script>
+    @* "~/": アプリケーションのルートパスを示す仮想パス *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @* asp-append-version="true": 静的ファイルにバージョン番号（キャッシュバスター）を自動付与するための属性 *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TodoApp.styles.css" asp-append-version="true" />
 </head>
@@ -12,7 +15,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TodoApp</a>
+                @* asp-area, asp-controller, asp-action を利用して、リンク先のURLを自動生成するRazorタグヘルパー *@
+                <a class="navbar-brand" asp-area="" asp-controller="Todo" asp-action="Index">TodoApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,18 +26,23 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @* @RenderBody() は、各ビュー固有のコンテンツをこのレイアウトに埋め込むためのRazor構文 *@
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - TodoApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - TodoApp 
         </div>
     </footer>
+    @* jQuery や Bootstrap のJavaScriptファイルの読み込み。 "~/": アプリケーションルートを示す *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* asp-append-version 属性により、キャッシュ制御のためのバージョン番号が付加される *@
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @* @await RenderSectionAsync("Scripts", required: false) は、ビュー側で定義された "Scripts" セクションを非同期にレンダリングするためのRazor構文
+       ※ required: false により、該当セクションがなくてもエラーとならない *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

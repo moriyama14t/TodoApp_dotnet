@@ -1,20 +1,30 @@
+@* モデルとして TodoApp.Models.Todo の IEnumerable（複数の Todo）を受け取る *@
 @model IEnumerable<TodoApp.Models.Todo>
 
 <h1>TODOリスト</h1>
 
+@* asp-action は、ASP.NET Core の タグヘルパー によって提供される属性の一つ *@
 <form asp-action="Create" method="post">
     <input type="text" name="title" placeholder="新しいTODOを入力" required />
     <button type="submit">追加</button>
 </form>
 
 <ul>
+    @* Model 内の各 todo アイテムについてループ処理を行う *@
     @foreach (var todo in Model)
     {
         <li>
             <form asp-action="ToggleComplete" method="post" style="display:inline;">
                 <input type="hidden" name="id" value="@todo.Id" />
                 <button type="submit">
-                    @if (todo.IsComplete) { <s>@todo.Title</s> } else { @todo.Title }
+                    @if (todo.IsComplete)
+                    { 
+                        <s>@todo.Title</s> 
+                    }
+                    else 
+                    { 
+                        @todo.Title 
+                    }
                 </button>
             </form>
             <form asp-action="Delete" method="post" style="display:inline;">
@@ -24,3 +34,5 @@
         </li>
     }
 </ul>
+
+@* 【コメント】Razor コメント（@* ... ） は、サーバー側で処理されるため、クライアントには出力されない。*@

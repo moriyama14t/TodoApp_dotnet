@@ -1,0 +1,15 @@
+{
+  // Logging に関する設定
+  "Logging": {
+    // LogLevel は各カテゴリごとのログ出力レベルを指定する
+    "LogLevel": {
+      // "Default": 全体でのログ出力レベルを "Information" に設定
+      "Default": "Information",
+      // "Microsoft.AspNetCore": ASP.NET Core 関連のログは "Information" 以上の重要度のもののみ出力
+      "Microsoft.AspNetCore": "Information"
+    }
+  },
+  // AllowedHosts はアプリケーションが受け入れるホスト名を指定する
+  // "*" はすべてのホストからのリクエストを許可することを意味する
+  "AllowedHosts": "*"
+}
