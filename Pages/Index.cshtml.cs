@@ -7,19 +7,20 @@ namespace TodoApp.Pages
     {
         // フォームからバインドするプロパティ
         [BindProperty]
-        public string InputValue { get; set; } = string.Empty;
+        public string InputValue { get; set; } = "こんにちわ";
 
         // 結果メッセージを表示するためのプロパティ
         public string ResultMessage { get; set; } = string.Empty;
 
         // GET リクエスト時に実行される
-        public void OnGet()
+        public IActionResult OnGet()
         {
             ResultMessage = "OnGet が実行されました。";
+            return Page();
         }
 
         // デフォルトの POST ハンドラー
-        public IActionResult OnPost()
+        public IActionResult OnPostAsync()
         {
             InputValue = 1000.ToString();
             Console.WriteLine("Default OnPost");
@@ -29,7 +30,7 @@ namespace TodoApp.Pages
         }
 
         // asp-page-handler="Upload" を指定した場合に実行されるハンドラー
-        public IActionResult OnPostUpload()
+        public IActionResult OnPostUploadAsync()
         {
             Console.WriteLine("OnPostUpload");
             Console.WriteLine($"入力値 = {InputValue}");
@@ -38,7 +39,7 @@ namespace TodoApp.Pages
         }
 
         // asp-page-handler="Cancel" を指定した場合に実行されるハンドラー
-        public IActionResult OnPostCancel()
+        public IActionResult OnPostCancelAsync()
         {
             Console.WriteLine("OnPostCancel");
             Console.WriteLine($"入力値 = {InputValue}");
