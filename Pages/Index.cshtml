@@ -1,0 +1,31 @@
+@page
+@model TodoApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Test Page";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- フォーム部分 -->
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label asp-for="InputValue">入力値:</label>
+        <input type="text" asp-for="InputValue" class="form-control" />
+        <span asp-validation-for="InputValue" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <!-- 名前付きハンドラー "Upload" を呼び出すボタン -->
+        <button type="submit" formaction="?handler=Upload" class="btn btn-primary">Upload</button>
+        <!-- 名前付きハンドラー "Cancel" を呼び出すボタン -->
+        <button type="submit" formaction="?handler=Cancel" class="btn btn-warning">Cancel</button>
+        <!-- 属性なし：デフォルトの OnPost が呼ばれる -->
+        <button type="submit" class="btn btn-secondary">Default Post</button>
+    </div>
+</form>
+
+<!-- 結果表示 -->
+<div class="mt-3">
+    <p>Result: @Model.ResultMessage</p>
+</div>
+

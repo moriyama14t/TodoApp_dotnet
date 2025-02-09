@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // MVCパターンの「コントローラ」と「ビュー」を使用するためのサービスを登録
 builder.Services.AddControllersWithViews();
 
+// Razor Pages のサービスを登録
+builder.Services.AddRazorPages();
+
 // Entity Framework Coreのデータベースコンテキスト（TodoContext）を登録
 // SQLiteをデータベースとして使用し、接続文字列に「TodoApp.db」を指定
 builder.Services.AddDbContext<TodoContext>(options =>
@@ -42,10 +45,13 @@ app.MapStaticAssets();
 // MVCのルート設定を定義
 // デフォルトルート：controller が指定されない場合は "todo"、action が指定されない場合は "Index"、
 // オプションパラメータとして "id" を受け取る
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=todo}/{action=Index}/{id?}")
-    .WithStaticAssets();  // ルートに対して静的アセットの設定を追加（カスタム拡張メソッドの可能性あり）
+// app.MapControllerRoute(
+//     name: "default",
+//     pattern: "{controller=todo}/{action=Index}/{id?}")
+//    .WithStaticAssets();  // ルートに対して静的アセットの設定を追加（カスタム拡張メソッドの可能性あり）
+
+// Razor Pages のエンドポイントをマッピングする
+app.MapRazorPages();
 
 // アプリケーションのリクエスト受信を開始し、実行状態に移行
 app.Run();
